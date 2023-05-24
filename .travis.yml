@@ -20,3 +20,15 @@ after_success:
   - docker push coniix/multi-nginx 
   - docker push coniix/multi-server
   - docker push coniix/multi-worker  
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "multi-container"
+  env: "Multi-container-env"
+  bucked_name: "elasticbeanstalk-eu-north-1-313582925907"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
