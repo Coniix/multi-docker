@@ -14,3 +14,10 @@ after_success:
   - docker build -t Coniix/multi-nginx ./nginx
   - docker build -t Coniix/multi-server ./server
   - docker build -t Coniix/multi-worker ./worker
+  # Log in to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to the Docker hub
+  - docker push Coniix/multi-client
+  - docker push Coniix/multi-nginx 
+  - docker push Coniix/multi-server
+  - docker push Coniix/multi-worker  
